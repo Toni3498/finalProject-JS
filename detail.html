@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Detail</title>
+    <link href="reset.css" rel="stylesheet" />
+    <link href="style.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="background__detail">
+      <p class="title-detail">Post detail</p>
+      <div class="box">
+        <div
+          class="log"
+          id="log"
+          data-aos="flip-left"
+          data-aos-easing="ease-out-cubic"
+          data-aos-duration="1000"
+        ></div>
+      </div>
+      <p id="comment-title">Comments of this post</p>
+      <div class="box2">
+        <div id="comment__list" class="comment__list"></div>
+      </div>
+    </div>
+
+    <script>
+      window.onload = function () {
+        function getIdParams() {
+          const urlParams = new URLSearchParams(window.location.search);
+          const id = urlParams.get("id");
+          return id;
+        }
+
+        let y = getIdParams();
+
+        let file = "https://jsonplaceholder.typicode.com/posts/" + y;
+
+        fetch(file)
+          .then((x) => x.json())
+          .then((data) => {
+            document.getElementById(
+              "log"
+            ).innerHTML += `<div class="logs"><p>${data.title}</p><p>${data.body}</p><p>User-ID: ${data.userId}</p><p>id: ${data.id}</p><p><a href="user.html?userId=${data.userId}">Author</a></p></div>`;
+          })
+          .catch((err) => console.log("error", err));
+
+        var fileCm =
+          "https://jsonplaceholder.typicode.com/comments?postId=" + y;
+
+        fetch(fileCm)
+          .then((x) => x.json())
+          .then((data) => {
+            for (let i = 0; i < data.length; i++) {
+              document.getElementById(
+                "comment__list"
+              ).innerHTML += `<div class="comment__item"data-aos="flip-left"
+      data-aos-easing="ease-out-cubic"
+      data-aos-duration="2000"><p>postId:${data[i].id}</p><p>${data[i].name}</p><p>email: ${data[i].email}</p><p> ${data[i].body}</p></div>`;
+            }
+          })
+          .catch((err) => console.log("error", err));
+      };
+    </script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
+  </body>
+</html>

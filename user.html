@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User</title>
+    <link href="reset.css" rel="stylesheet" />
+    <link href="style.css" rel="stylesheet" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="user-container">
+      <p class="user-title">Information Of This User</p>
+      <div class="userDetail" id="userDetail"></div>
+
+      <p class="user-title">Posts Of This User</p>
+      <div class="postsOfThisUser" id="postsOfThisUser"></div>
+    </div>
+    <script>
+      window.onload = function () {
+        function getUserIdParams() {
+          const urlParams = new URLSearchParams(window.location.search);
+          const userId = urlParams.get("userId");
+          return userId;
+        }
+
+        let key = getUserIdParams();
+        let fileUserId = "https://jsonplaceholder.typicode.com/users/" + key;
+
+        fetch(fileUserId)
+          .then((x) => x.json())
+          .then((data) => {
+            document.getElementById(
+              "userDetail"
+            ).innerHTML += `<div class="userDetails"data-aos="zoom-in-down">
+              <div class="user__Contact">
+              <p>${data.name}</p>
+              <p>username: ${data.username}</p>
+              <p>email:${data.email} </p>
+              <p>Phone: ${data.phone}</p>
+              <p>Website: ${data.website}</p>
+              </div>
+             
+              <div class="user__Address">
+                <p>Address:</p>
+                <p>${data.address.street}</p>
+                <p>${data.address.suite}</p>
+                <p>${data.address.city}</p>
+                <p>${data.address.zipcode}</p>
+                <p>${data.address.geo.lat}</p>
+                <p>${data.address.geo.lng}</p>
+              </div>
+             
+              <div class="user__Company">
+                <p>Company:</p>
+                <p> ${data.company.name}</p>
+                <p> ${data.company.catchPhrase}</p>
+                <p> ${data.company.bs}</p>
+              </div>
+             </div>`;
+          })
+          .catch((err) => console.log("error", err));
+
+        let fileA = "https://jsonplaceholder.typicode.com/posts?userId=" + key;
+        fetch(fileA)
+          .then((x) => x.json())
+          .then((data) => {
+            for (let i = 0; i < data.length; i++) {
+              document.getElementById(
+                "postsOfThisUser"
+              ).innerHTML += `<div class="postOfThisUser__item" data-aos="zoom-out"><p>${data[i].title}</p><p>${data[i].body}</p><p> <a href="detail.html?id=${data[i].id}">Read more</a></p></div><br>`;
+            }
+          })
+          .catch((err) => console.log("error", err));
+      };
+    </script>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
+  </body>
+</html>

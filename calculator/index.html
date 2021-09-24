@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Calculator</title>
+    <link href="reset.css" rel="stylesheet" />
+    <link href="style.css" rel="stylesheet" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="wrapper">
+      <p class="title">My Calculator</p>
+
+      <div class="calc-container">
+        <div class="row calc-value">0</div>
+
+        <div class="row">
+          <div class="btn btn-clear" onclick="onClearScreen()">AC</div>
+          <div
+            class="btn btn-negative"
+            data-value="negative"
+            onclick="onOperatorClick(this)"
+          >
+            +/-
+          </div>
+          <div
+            class="btn btn-percent"
+            data-value="percent"
+            onclick="onOperatorClick(this)"
+          >
+            %
+          </div>
+          <div
+            class="btn btn-divide"
+            data-value="divide"
+            onclick="onOperatorClick(this)"
+          >
+            &divide
+          </div>
+        </div>
+        <div class="row">
+          <div
+            class="btn number-7"
+            data-value="7"
+            onclick="onNumberClick(this)"
+          >
+            7
+          </div>
+          <div
+            class="btn number-8"
+            data-value="8"
+            onclick="onNumberClick(this)"
+          >
+            8
+          </div>
+          <div
+            class="btn number-9"
+            data-value="9"
+            onclick="onNumberClick(this)"
+          >
+            9
+          </div>
+          <div
+            class="btn btn-multiply"
+            onclick="onOperatorClick(this)"
+            data-value="multiply"
+          >
+            x
+          </div>
+        </div>
+        <div class="row">
+          <div
+            class="btn number-4"
+            data-value="4"
+            onclick="onNumberClick(this)"
+          >
+            4
+          </div>
+          <div
+            class="btn number-5"
+            data-value="5"
+            onclick="onNumberClick(this)"
+          >
+            5
+          </div>
+          <div
+            class="btn number-6"
+            data-value="6"
+            onclick="onNumberClick(this)"
+          >
+            6
+          </div>
+          <div
+            class="btn btn-sub"
+            data-value="sub"
+            onclick="onOperatorClick(this)"
+          >
+            -
+          </div>
+        </div>
+        <div class="row">
+          <div
+            class="btn number-1"
+            data-value="1"
+            onclick="onNumberClick(this)"
+          >
+            1
+          </div>
+          <div
+            class="btn number-2"
+            data-value="2"
+            onclick="onNumberClick(this)"
+          >
+            2
+          </div>
+          <div
+            class="btn number-3"
+            data-value="3"
+            onclick="onNumberClick(this)"
+          >
+            3
+          </div>
+          <div
+            class="btn btn-add"
+            data-value="add"
+            onclick="onOperatorClick(this)"
+          >
+            +
+          </div>
+        </div>
+        <div class="row">
+          <div class="col2 btn zero" value="0" onclick="onNumberClick(this)">
+            0
+          </div>
+          <div class="btn btn-dot" data-value="dot">.</div>
+          <div
+            class="btn operator btn-equal"
+            data-value="equal"
+            onclick="onOperatorClick(this)"
+          >
+            =
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="main.js"></script>
+  </body>
+</html>
